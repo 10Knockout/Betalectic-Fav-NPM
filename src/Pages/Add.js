@@ -14,14 +14,12 @@ const ErrorBox = ({ message, onClose }) => (
   </div>
 );
 
-
 const Add = () => {
   const navigate = useNavigate();
   const [packagesList, setPackagesList] = useState(
     JSON.parse(localStorage.getItem("packagesList") || "[]")
   );
   const [List, setList] = useState([]);
-  const [search, setSearch] = useState("");
   const [textInput, setTextInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState([]);
@@ -80,7 +78,6 @@ const Add = () => {
   };
 
   const handleChange = (e) => {
-    setSearch(e.target.value);
     newfunction(e.target.value);
   };
 
@@ -92,7 +89,7 @@ const Add = () => {
     <div className="h-[100vh] md:p-[100px] p-[20px]">
       <div className="heading text-[2em] font-bold">Search for NPM Packages</div>
       <div>
-        <TextInput onChange={(e) => handleChange(e)} placeholder={"angular"} />
+        <TextInput onChange={handleChange} placeholder={"angular"} />
       </div>
 
       {isLoading ? (
@@ -125,7 +122,7 @@ const Add = () => {
 
       <div className="mt-5">
         <div className="heading text-[1.5em] font-bold">
-          Why is this you fav?
+          Why is this your favorite?
         </div>
         <TextArea
           value={textInput}
